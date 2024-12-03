@@ -11,25 +11,27 @@ Spring Boot 프로젝트에서 필요한 공통 모듈과 유틸리티를 제공
 - **보안 관련 유틸리티**: 보안 설정에 필요한 공통 도구 제공.
 - **커스텀 Validator**: 다양한 검증 시나리오를 위한 유효성 검사 도구.
 
+## 환경
+
+- **Java 11**
+- **Spring Boot 2.7.14** (Parent Dependency)
+
+`spring-boot-starter-parent`를 사용하여 Spring Boot 프로젝트의 설정을 표준화했습니다. 관련 설정은 아래와 같습니다:
+
+```xml
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.14</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
+```
 ## 설치 방법
 
 1. Git 저장소를 복제합니다.
    ```bash
    git clone https://github.com/taehui8260/springboot-common-modules.git
    ```
-2. `pom.xml` 또는 `build.gradle`에 의존성을 추가합니다.
-   - Maven:
-     ```xml
-     <dependency>
-         <groupId>com.example</groupId>
-         <artifactId>shared-module</artifactId>
-         <version>1.0.0</version>
-     </dependency>
-     ```
-   - Gradle:
-    ```gradle
-    implementation 'com.example:shared-module:1.0.0'
-    ```
 
 ## 사용 방법
 
