@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/50cb92c1-b61a-4875-a437-454d06d701ef)# 공통모듈 (common-modules)
+# 공통모듈 (common-modules)
 
 Spring Boot 프로젝트에서 필요한 공통 모듈과 유틸리티를 제공하는 저장소입니다. 이 저장소는 재사용 가능한 컴포넌트를 제공하여 코드 중복을 줄이고 개발 효율성을 높이는 것을 목표로 합니다.
 
