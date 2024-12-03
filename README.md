@@ -42,6 +42,7 @@ Spring Boot 프로젝트에서 필요한 공통 모듈과 유틸리티를 제공
 ---
 
 ## 프로젝트 구조
+```plaintext
 springboot-common-modules/
 ├── src/main/java/com/taehui/common/
 │   ├── excel/          # 엑셀 업로드/다운로드 관련 클래스
@@ -58,7 +59,7 @@ springboot-common-modules/
 ├── pom.xml             # Maven 의존성 관리
 ├── README.md           # 프로젝트 소개 문서
 └── LICENSE             # 라이센스
-
+```
 ---
 
 ## 환경
