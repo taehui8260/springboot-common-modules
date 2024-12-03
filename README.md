@@ -15,7 +15,7 @@ Spring Boot 프로젝트에서 필요한 공통 모듈과 유틸리티를 제공
 
 1. Git 저장소를 복제합니다.
    ```bash
-   git clone https://github.com/username/SharedModule.git
+   git clone https://github.com/taehui8260/springboot-common-modules.git
    ```
 2. `pom.xml` 또는 `build.gradle`에 의존성을 추가합니다.
    - Maven:
