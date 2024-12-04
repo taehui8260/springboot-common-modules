@@ -1,0 +1,33 @@
+name: Maven Deploy
+
+on:
+    push:
+        branches:
+            - main  # main 브랜치에 푸쉬될 때 실행
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v3
+
+            -   name: Set up JDK 17
+                uses: actions/setup-java@v3
+                with:
+                    distribution: 'temurin'
+                    java-version: '17'
+
+            -   name: Cache Maven repository
+                uses: actions/cache@v3
+                with:
+                    path: ~/.m2/repository
+                    key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+                    restore-keys: |
+                        ${{ runner.os }}-maven-
+
+            -   name: Build and Deploy to GitHub Packages
+                run: mvn clean deploy -DskipTests
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
