@@ -1,4 +1,4 @@
-package com.taehui.springboot_common_modules;
+package com.taehui.common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

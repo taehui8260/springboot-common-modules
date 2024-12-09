@@ -1,4 +1,4 @@
-package com.taehui.springboot_common_modules;
+package com.taehui.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
