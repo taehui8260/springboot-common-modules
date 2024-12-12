@@ -106,9 +106,9 @@ public class ExcelUtil {
 
         /**
          * title: sheet 최상단에 보여질 제목
-         * excelData: 엑셀 데이터(sheet_key와 데이터 List가 매핑되어 저장되어있는 데이터. excelData.get("key").size() 만큼의 sheet 생성)
          * headerList: 헤더 정보 (sheet_key에 해당하는 헤더 정보로 cell 헤더에 보여질 정보(headerList.get("key").size()==columnList.get("key").size())
          * columnList: 컬럼 정보 (sheet_key에 해당하는 컬럼정보 정보를 가지고 excelData에서 컬럼 값을 추출.(headerList.get("key").size()==columnList.get("key").size())
+         * excelData: 엑셀 데이터(sheet_key와 데이터 List가 매핑되어 저장되어있는 데이터. excelData.get("key").size() 만큼의 sheet 생성)
          * EX) excelData.get("sheet1")에 들어있는 내용을 엑셀로 저장할때 해당 데이터의 헤더는 headerList.get("sheet1")에 들어있고
          *  컬럼 정보는 columnList.get("shee1")의 값들을 각각 컬럼의 키값으로 이용해 excelData.get("sheet1")[0] ~ [excelData.get("sheet1").size[]]의 데이터를 조회한다.
          */

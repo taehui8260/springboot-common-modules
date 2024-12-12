@@ -1,27 +1,26 @@
 package com.taehui.common.excel;
 
 import com.taehui.common.excel.model.ExcelData;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.poi.ss.usermodel.Workbook;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ExcelService {
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+
     /**
      * ExcelData 객체 추가
      *
-     * rawData를 기반으로 headerList와 columnList를 할당함으로 순서가 보장되는 LinkedHashMap 컬렉션을 사용한다.
-     * @param excelData
-     * @param sheet
-     * @param rawData
-     */
-    public void addExcelData(ExcelData excelData, String sheet, List<LinkedHashMap<String, Object>> rawData){
-        List<String> headerList = new ArrayList<>(rawData.get(0).keySet());
-
-    }
-
-    /**
      * sheet에 해당하는 제목, 헤더, 컬럼, 엑셀데이터를 할당한다.
      *
      * @param excelData
@@ -31,7 +30,33 @@ public class ExcelService {
      * @param columnList
      * @param rawData
      */
-    public void addExcelData(ExcelData excelData, String sheet, String title, List<String> headerList, List<String> columnList, List<LinkedHashMap<String, Object>> rawData){
+    public void addExcelData(ExcelData excelData, String sheet, String title, List<Map<String, Object>> rawData, List<String> headerList, List<String> columnList){
+        excelData.getTitle().put(sheet, title);
+        excelData.getExcelData().put(sheet, rawData);
+        excelData.getHeaderList().put(sheet, headerList);
+        excelData.getColumnList().put(sheet, columnList);
+    }
 
+    /**
+     * 엑셀 다운로드
+     *
+     * @param response
+     * @param workbook
+     * @param orgFileName
+     * @throws IOException
+     */
+    public void excelDownload(final HttpServletResponse response, final Workbook workbook, final String orgFileName)
+            throws IOException {
+        //final String userAgent = request.getHeader("User-Agent");
+        String downloadFileName = "";
+        List<String> headerList = new ArrayList<>(List.of(new String[]{"1", "2"}));
+
+        //띄어쓰기, ',' 문자 변환
+        downloadFileName = URLEncoder.encode(orgFileName, StandardCharsets.UTF_8).replaceAll("\\+", "%20").replaceAll("%2C", "");
+        //downloadFileName = orgFileName;
+        response.setContentType("ms-vnd/excel");
+        response.setHeader("Content-Disposition", "attachment; filename=" + downloadFileName + ".xlsx");
+        final OutputStream outputStream = response.getOutputStream();
+        workbook.write(outputStream);
     }
 }
