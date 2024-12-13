@@ -95,7 +95,24 @@
             <scope>provided</scope>
         </dependency>
 
-	</dependencies>
+        <!-- 테스트 진행을 윈한 JUnit 라이브러리 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- MyBatis 또는 데이터베이스 연결을 위한 Mockito-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
 
 	<build>
 		<plugins>
