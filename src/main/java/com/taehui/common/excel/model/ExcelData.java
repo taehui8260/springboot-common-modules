@@ -19,4 +19,11 @@ public class ExcelData {
 
     /* 컬럼 정보 */
     LinkedHashMap<String, List<String>> columnList;
+
+    public ExcelData(){
+        this.title = new LinkedHashMap<>();
+        this.excelData = new LinkedHashMap<>();
+        this.headerList = new LinkedHashMap<>();
+        this.columnList = new LinkedHashMap<>();
+    }
 }

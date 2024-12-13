@@ -15,7 +15,7 @@ ExcelService excelService;
     ) throws IOException {
         ExcelUtil excelUtil = new ExcelUtil();
 
-        ExcelData excel = new EacelData();
+        ExcelData excel = new ExcelData();
         List<Map<String, Object>> data = Arrays.asList(
             Map.of("ID", 1, "Name", "Name_1", "Age", 22, "Country", "Germany", "Salary", 52199),
             Map.of("ID", 2, "Name", "Name_2", "Age", 38, "Country", "Canada", "Salary", 46658),
