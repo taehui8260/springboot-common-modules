@@ -34,17 +34,18 @@ ExcelService excelService;
         List<String> columnList = new ArrayList<>(List.of(new String[]{"ID", "Name", "Age", "Country", "Salary"}));
 
         excelService.addExcelData(excel, "sheet", "title", data, headerList, columnList);
-        Workbook workbook = excelUtil.createExcel(excel.getTitle(), excel.getExcelData(), excel.getHeaderList(), excel.getColumnList());
-        //컬럼 색 변경
-        for(String titleKey: excel.getTitle().keySet()){
-            int columnIndex = 0;
-            for(String column: excel.getColumnList().get(titleKey)){
-                if(column.contains("Salary")){
-                    excelUtil.setColumnColor(workbook.getSheet(titleKey), columnIndex, IndexedColors.YELLOW);
+        try (Workbook workbook = excelUtil.createExcel(excel.getTitle(), excel.getExcelData(), excel.getHeaderList(), excel.getColumnList())) {
+            //컬럼 색 변경
+            for(String titleKey: excel.getTitle().keySet()){
+                int columnIndex = 0;
+                for(String column: excel.getColumnList().get(titleKey)){
+                    if(column.contains("Salary")){
+                        excelUtil.setColumnColor(workbook.getSheet(titleKey), columnIndex, IndexedColors.YELLOW);
+                    }
+                    columnIndex++;
                 }
-                columnIndex++;
             }
+            excelService.excelDownload(response, workbook, "TestExcel.xlsx");
         }
-        excelService.excelDownload(request, response, workbook, "엑셀 데이터");
     }
 ```
