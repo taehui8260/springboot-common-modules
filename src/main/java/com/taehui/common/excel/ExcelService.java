@@ -1,9 +1,11 @@
 package com.taehui.common.excel;
 
 import com.taehui.common.excel.model.ExcelData;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
@@ -38,8 +40,17 @@ public class ExcelService {
     }
 
     /**
-     * 엑셀 다운로드
+     * 엑셀 다운로드 메서드.
      *
+     * <p>이 메서드를 호출하기 전에 {@code Workbook} 객체를 생성하고, 반드시
+     * {@code try-with-resources} 구문을 사용해 리소스를 닫아야 합니다.</p>
+     *
+     * <pre>{@code
+     * try (Workbook workbook = new XSSFWorkbook()) {
+     *     workbook.createSheet("Sheet1");
+     *     excelService.excelDownload(response, workbook, "SampleFile");
+     * }
+     * }</pre>
      * @param response
      * @param workbook
      * @param orgFileName
@@ -49,14 +60,14 @@ public class ExcelService {
             throws IOException {
         //final String userAgent = request.getHeader("User-Agent");
         String downloadFileName = "";
-        List<String> headerList = new ArrayList<>(List.of(new String[]{"1", "2"}));
 
         //띄어쓰기, ',' 문자 변환
         downloadFileName = URLEncoder.encode(orgFileName, StandardCharsets.UTF_8).replaceAll("\\+", "%20").replaceAll("%2C", "");
         //downloadFileName = orgFileName;
-        response.setContentType("ms-vnd/excel");
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setHeader("Content-Disposition", "attachment; filename=" + downloadFileName + ".xlsx");
-        final OutputStream outputStream = response.getOutputStream();
+        // 데이터 전송
+        ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
     }
 }
