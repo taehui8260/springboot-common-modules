@@ -123,26 +123,30 @@ public class ExcelUtil {
 
             List<Map<String, Object>> data = excelData.get(sheet_key);
 
-            //첫 번째 줄에 title
-            row = sheet1.createRow(0);
-            row.setHeight((short) 650);
-            cell = row.createCell(0);
-            cell.setCellValue(title.get(sheet_key));
-            cell.setCellStyle(styleHead);
+            String sheetTitle = title.get(sheet_key);
+            int startIndex = 0;
 
-            sheet1.addMergedRegion(new CellRangeAddress(0, 0, 0, headerList.get(sheet_key).size() - 1));
+            //title이 있을경우 첫 번째 줄에 title
+            if(!"".equals(sheetTitle)){
+                row = sheet1.createRow(0);
+                row.setHeight((short) 650);
+                cell = row.createCell(startIndex++);
+                cell.setCellValue(title.get(sheet_key));
+                cell.setCellStyle(styleHead);
 
-            row = sheet1.createRow(1);
+                sheet1.addMergedRegion(new CellRangeAddress(0, 0, 0, headerList.get(sheet_key).size() - 1));
+            }
+            row = sheet1.createRow(startIndex++);
 
-            // 두 번째 줄에 Cell 설정하기(컬럼명)
+            // 다음 줄에 Cell 설정하기(컬럼명)
             for (int i = 0; i < headerList.get(sheet_key).size(); i++) {
                 cell = row.createCell(i);
                 cell.setCellValue(headerList.get(sheet_key).get(i));
                 cell.setCellStyle(styleCelltitle);
             }
-            // 세 번째 줄에 Cell 설정하기(내용)
+            // 다음 줄에 Cell 설정하기(내용)
             for (int i = 0; i < data.size(); i++) {
-                row = sheet1.createRow(i + 2);
+                row = sheet1.createRow(i + startIndex);
                 for (int u = 0; u < columnList.get(sheet_key).size(); u++) {
                     Object value = data.get(i).get(columnList.get(sheet_key).get(u));
                     cell = row.createCell(u);
