@@ -105,7 +105,7 @@ public class ExcelUtil {
     public Workbook createExcel(Map<String, String> title, Map<String,List<Map<String,Object>>> excelData, Map<String, List<String>> headerList, Map<String, List<String>> columnList, String changeNull){
 
         /**
-         * title: sheet 최상단에 보여질 제목
+         * title: sheet 최상단에 보여질 제목(제목이 없으면 제목 row 미노출)
          * headerList: 헤더 정보 (sheet_key에 해당하는 헤더 정보로 cell 헤더에 보여질 정보(headerList.get("key").size()==columnList.get("key").size())
          * columnList: 컬럼 정보 (sheet_key에 해당하는 컬럼정보 정보를 가지고 excelData에서 컬럼 값을 추출.(headerList.get("key").size()==columnList.get("key").size())
          * excelData: 엑셀 데이터(sheet_key와 데이터 List가 매핑되어 저장되어있는 데이터. excelData.get("key").size() 만큼의 sheet 생성)
